@@ -1,0 +1,529 @@
+<!DOCTYPE HTML>
+<!--
+	LUMENGLAZE — Shop
+	Built on Spectral by HTML5 UP (html5up.net | @ajlkn)
+	CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>LUMENGLAZE — Shop</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="LUMENGLAZE Shop — DELULU, World Cup, and SUMMER. Premium streetwear. Limited drops." />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/lumenglaze.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			/* ── HOME BUTTON (left) ─────────────────────────────────── */
+
+			/* main.css sets opacity:0 on h1 in alt mode — always show it */
+			#header.alt h1,
+			#header h1 {
+				opacity: 1 !important;
+				pointer-events: auto !important;
+			}
+
+			/* match MENU's visual weight exactly */
+			#header h1 a#shop-home {
+				font-family: 'Open Sans', Helvetica, sans-serif !important;
+				font-size: 0.8em !important;
+				font-weight: 800 !important;
+				letter-spacing: 0.225em !important;
+				color: #ffffff !important;
+				text-shadow: none !important;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				text-transform: uppercase;
+			}
+
+			#header h1 a#shop-home:hover {
+				color: #c9a252 !important;
+				text-shadow: none !important;
+			}
+
+			/* ── CENTER SCROLL BAR ──────────────────────────────────── */
+			#shop-scroll-bar {
+				position: absolute;
+				left: 50%;
+				top: 0;
+				height: 3em;
+				line-height: 3em;
+				transform: translateX(-50%) translateY(-8px);
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 0.35s ease, transform 0.35s ease;
+				white-space: nowrap;
+				z-index: 1;
+			}
+
+			#shop-scroll-bar.is-visible {
+				opacity: 1;
+				pointer-events: auto;
+				transform: translateX(-50%) translateY(0);
+			}
+
+			#shop-scroll-bar a {
+				font-family: 'Bebas Neue', sans-serif;
+				font-size: 1em;
+				letter-spacing: 0.2em;
+				color: rgba(255, 255, 255, 0.8);
+				border-bottom: none !important;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.55em;
+				transition: color 0.2s ease;
+			}
+
+			#shop-scroll-bar a:hover {
+				color: #c9a252;
+			}
+
+			#shop-scroll-bar .up-arrow {
+				color: #c9a252;
+				font-size: 0.82em;
+				display: inline-flex;
+				align-items: center;
+			}
+
+			/* ── PLATFORM SHOP BUTTONS ─────────────────────────────── */
+			.shop-btns {
+				list-style: none;
+				padding: 0;
+				margin: 1.8em 0 2.5em 0;
+				display: flex;
+				flex-direction: column;
+				gap: 0.65em;
+			}
+
+			.shop-btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.6em;
+				width: 11em;
+				white-space: nowrap;
+				padding: 0.65em 1.2em;
+				border-radius: 6px;
+				font-size: 0.72em;
+				font-weight: 700;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				text-decoration: none !important;
+				border: 1px solid transparent;
+				transition: background 0.2s ease, border-color 0.2s ease,
+				            transform 0.2s ease, color 0.2s ease;
+			}
+
+			.shop-btn:hover {
+				transform: translateX(4px);
+				border-bottom: 1px solid transparent !important;
+			}
+
+			/* Amazon — warm orange */
+			.shop-btn--amazon {
+				background: rgba(255, 153, 0, 0.1);
+				border-color: rgba(255, 153, 0, 0.3);
+				color: #ff9900 !important;
+			}
+			.shop-btn--amazon:hover {
+				background: rgba(255, 153, 0, 0.2);
+				border-color: rgba(255, 153, 0, 0.6);
+			}
+
+			/* TikTok — clean white/light */
+			.shop-btn--tiktok {
+				background: rgba(255, 255, 255, 0.06);
+				border-color: rgba(255, 255, 255, 0.15);
+				color: rgba(255, 255, 255, 0.85) !important;
+			}
+			.shop-btn--tiktok:hover {
+				background: rgba(255, 255, 255, 0.12);
+				border-color: rgba(255, 255, 255, 0.35);
+				color: #fff !important;
+			}
+
+			/* Etsy — coral orange */
+			.shop-btn--etsy {
+				background: rgba(235, 90, 40, 0.1);
+				border-color: rgba(235, 90, 40, 0.3);
+				color: #eb5a28 !important;
+			}
+			.shop-btn--etsy:hover {
+				background: rgba(235, 90, 40, 0.2);
+				border-color: rgba(235, 90, 40, 0.6);
+			}
+
+			/* hide center bar on small screens where it'd overlap */
+			@media screen and (max-width: 736px) {
+				#shop-scroll-bar { display: none; }
+			}
+
+			/* ── DELULU SLIDER ──────────────────────────────────────── */
+			.delulu-slider {
+				position: absolute;
+				inset: 0;
+				overflow: hidden;
+				background: #1a0040;
+				cursor: grab;
+			}
+
+			.delulu-slider.is-dragging { cursor: grabbing; }
+
+			.delulu-slider .slider-track {
+				display: flex;
+				height: 100%;
+				transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+				will-change: transform;
+			}
+
+			.delulu-slider.is-dragging .slider-track {
+				transition: none;
+			}
+
+			.delulu-slider .slide {
+				flex: 0 0 100%;
+				height: 100%;
+			}
+
+			.delulu-slider .slide img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+				user-select: none;
+				-webkit-user-drag: none;
+				pointer-events: none;
+			}
+
+			.slider-btn {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				background: rgba(0, 0, 0, 0.42);
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				color: #fff;
+				width: 2.4em;
+				height: 2.4em;
+				border-radius: 50%;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 0.8em;
+				transition: background 0.2s ease, border-color 0.2s ease;
+				z-index: 3;
+				padding: 0;
+				line-height: 1;
+			}
+
+			.slider-btn:hover {
+				background: rgba(201, 162, 82, 0.65);
+				border-color: rgba(201, 162, 82, 0.5);
+			}
+
+			.slider-prev { left: 0.75em; }
+			.slider-next { right: 0.75em; }
+
+			.slider-dots {
+				position: absolute;
+				bottom: 0.85em;
+				left: 50%;
+				transform: translateX(-50%);
+				display: flex;
+				gap: 0.45em;
+				z-index: 3;
+			}
+
+			.slider-dots .dot {
+				width: 7px;
+				height: 7px;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.3);
+				cursor: pointer;
+				transition: background 0.25s ease, transform 0.25s ease;
+			}
+
+			.slider-dots .dot.active {
+				background: #c9a252;
+				transform: scale(1.3);
+			}
+		</style>
+	</head>
+	<body class="landing shop-page is-preload">
+
+		<!-- Page Wrapper -->
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header" class="alt">
+				<h1><a href="index.html" id="shop-home"><span class="icon solid fa-arrow-left"></span>Home</a></h1>
+
+				<!-- Center: brand + scroll-to-top, visible once scrolled -->
+				<div id="shop-scroll-bar">
+					<a href="#" id="shop-scroll-top">
+						Back to Top <span class="up-arrow"><span class="icon solid fa-arrow-up"></span></span>
+					</a>
+				</div>
+
+				<nav id="nav">
+					<ul>
+						<li class="special">
+							<a href="#menu" class="menuToggle"><span>Menu</span></a>
+							<div id="menu">
+								<ul>
+									<li><a href="index.html">Home</a></li>
+									<li><a href="#two" class="scrolly">Collections</a></li>
+									<li><a href="#about" class="scrolly">About</a></li>
+									<li><a href="#footer" class="scrolly">Contact</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<span class="brand-eyebrow">Shop 2026 Collections</span>
+					<h2>LUMENGLAZE</h2>
+					<p>Wear the vision<br />
+					The glazing standard<br />
+					</p>
+					<ul class="actions special">
+						<li><a href="#delulu" class="button primary scrolly">Explore Collections</a></li>
+					</ul>
+					<a href="#delulu" class="banner-arrow scrolly"><span class="icon solid fa-chevron-down"></span></a>
+				</div>
+			</section>
+
+			<!-- Collections Spotlights -->
+			<section id="two" class="wrapper alt style2">
+
+				<!-- DELULU -->
+				<section id="delulu" class="spotlight">
+					<div class="image delulu-img">
+					<div class="delulu-slider">
+						<div class="slider-track">
+							<div class="slide"><img src="images/Delulu/delulu-floral-lettering-tee-cute-pink-script-retro-flower-design.jpg" alt="DELULU Collection" /></div>
+							<div class="slide"><img src="images/Delulu/delulu-floral-lettering-tee-cute-pink-script-retro-flower-design%20(1).jpg" alt="DELULU Collection" /></div>
+							<div class="slide"><img src="images/Delulu/delulu-floral-lettering-tee-cute-pink-script-retro-flower-design%20(2).jpg" alt="DELULU Collection" /></div>
+							<div class="slide"><img src="images/Delulu/delulu-floral-lettering-tee-cute-pink-script-retro-flower-design%20(3).jpg" alt="DELULU Collection" /></div>
+							<div class="slide"><img src="images/Delulu/delulu-floral-lettering-tee-cute-pink-script-retro-flower-design%20(4).jpg" alt="DELULU Collection" /></div>
+						</div>
+						<button class="slider-btn slider-prev" aria-label="Previous image"><span class="icon solid fa-chevron-left"></span></button>
+						<button class="slider-btn slider-next" aria-label="Next image"><span class="icon solid fa-chevron-right"></span></button>
+						<div class="slider-dots">
+							<span class="dot active"></span>
+							<span class="dot"></span>
+							<span class="dot"></span>
+							<span class="dot"></span>
+							<span class="dot"></span>
+						</div>
+					</div>
+				</div>
+					<div class="content">
+						<span class="collection-tag">Collection</span>
+						<h2>DELULU</h2>
+						<p>Dare to be delusionally, magnificently yourself. DELULU is
+						LUMENGLAZE's maximalist fantasy — electric colors, fearless
+						silhouettes, and the kind of dressing that turns heads before you
+						enter the room. Reality is overrated. Dress for the life
+						you&#8217;re manifesting.</p>
+						<ul class="shop-btns">
+							<li><a href="https://www.amazon.com" target="_blank" rel="noopener" class="shop-btn shop-btn--amazon"><span class="icon brands fa-amazon"></span> Amazon</a></li>
+							<li><a href="https://www.tiktok.com/shop" target="_blank" rel="noopener" class="shop-btn shop-btn--tiktok"><span class="icon brands fa-tiktok"></span> TikTok Shop</a></li>
+							<li><a href="https://www.etsy.com" target="_blank" rel="noopener" class="shop-btn shop-btn--etsy"><span class="icon solid fa-store"></span> Etsy</a></li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- World Cup -->
+				<section id="worldcup" class="spotlight">
+					<div class="image worldcup-img"><div class="gradient-art"></div></div>
+					<div class="content">
+						<span class="collection-tag">Collection</span>
+						<h2>WORLD CUP</h2>
+						<p>The beautiful game meets refined streetwear. The World Cup
+						collection channels stadium energy into every stitch — athletic
+						precision fused with street-ready silhouettes. Built for those
+						who celebrate with style. Limited edition. Globally inspired.
+						Worn everywhere.</p>
+						<ul class="shop-btns">
+							<li><a href="https://www.amazon.com" target="_blank" rel="noopener" class="shop-btn shop-btn--amazon"><span class="icon brands fa-amazon"></span> Amazon</a></li>
+							<li><a href="https://www.tiktok.com/shop" target="_blank" rel="noopener" class="shop-btn shop-btn--tiktok"><span class="icon brands fa-tiktok"></span> TikTok Shop</a></li>
+							<li><a href="https://www.etsy.com" target="_blank" rel="noopener" class="shop-btn shop-btn--etsy"><span class="icon solid fa-store"></span> Etsy</a></li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- SUMMER -->
+				<section id="summer" class="spotlight">
+					<div class="image summer-img"><div class="gradient-art"></div></div>
+					<div class="content">
+						<span class="collection-tag">Collection</span>
+						<h2>SUMMER</h2>
+						<p>From first light to last. SUMMER 2026 channels the season&#8217;s
+						warmth into relaxed silhouettes, sun-faded palettes, and fabrics
+						light enough to carry the breeze. Golden-hour tones. Effortless
+						cuts. Wear the warmth you feel when everything is exactly right.</p>
+						<ul class="shop-btns">
+							<li><a href="https://www.amazon.com" target="_blank" rel="noopener" class="shop-btn shop-btn--amazon"><span class="icon brands fa-amazon"></span> Amazon</a></li>
+							<li><a href="https://www.tiktok.com/shop" target="_blank" rel="noopener" class="shop-btn shop-btn--tiktok"><span class="icon brands fa-tiktok"></span> TikTok Shop</a></li>
+							<li><a href="https://www.etsy.com" target="_blank" rel="noopener" class="shop-btn shop-btn--etsy"><span class="icon solid fa-store"></span> Etsy</a></li>
+						</ul>
+					</div>
+				</section>
+
+			</section>
+
+			<!-- Brand Values -->
+			<section id="about" class="wrapper style3 special">
+				<div class="inner">
+					<header class="major">
+						<h2>The GLAZE Standard</h2>
+						<p>Premium materials. Limited drops. An obsessive attention to craft.<br />
+						If it doesn&#8217;t glow, it doesn&#8217;t go.</p>
+					</header>
+					<ul class="features">
+						<li class="icon fa-gem">
+							<h3>Premium Materials</h3>
+							<p>Every piece crafted from sustainably sourced, premium-grade fabrics.
+							Quality you can feel from the first touch — and still feel ten seasons later.</p>
+						</li>
+						<li class="icon solid fa-fire">
+							<h3>Limited Drops</h3>
+							<p>Each collection releases in carefully limited quantities. No restocks.
+							No dilution. Own something that was made for a reason — and made for few.</p>
+						</li>
+						<li class="icon solid fa-globe">
+							<h3>Global Shipping</h3>
+							<p>From our studio to your wardrobe, wherever in the world that may be.
+							Free shipping on orders over $150. Every continent. Every timezone.</p>
+						</li>
+						<li class="icon solid fa-star">
+							<h3>Crafted to Last</h3>
+							<p>Trend-proof construction. Each LUMENGLAZE piece is designed to outlast
+							the season it was born from. Timeless cuts. Enduring quality.</p>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- Newsletter CTA -->
+			<section id="cta" class="wrapper style4">
+				<div class="inner">
+					<header>
+						<h2>Join the Glow List</h2>
+						<p>Be first to know when new collections drop.<br />
+						No spam. Just the light.</p>
+					</header>
+					<ul class="actions stacked">
+						<li><a href="mailto:hello@lumenglaze.com" class="button fit primary">Early Access</a></li>
+						<li><a href="#delulu" class="button fit scrolly">Shop Now</a></li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="https://www.instagram.com" target="_blank" rel="noopener" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="https://www.tiktok.com" target="_blank" rel="noopener" class="icon brands fa-tiktok"><span class="label">TikTok</span></a></li>
+					<li><a href="https://x.com" target="_blank" rel="noopener" class="icon brands fa-twitter"><span class="label">Twitter / X</span></a></li>
+					<li><a href="mailto:hello@lumenglaze.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; 2026 LUMENGLAZE</li>
+					<li>Wear the Light</li>
+				</ul>
+			</footer>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script>
+			$(window).on('scroll.shopbar', function () {
+				var threshold = $('#delulu').offset().top - $('#header').outerHeight();
+				$('#shop-scroll-bar').toggleClass('is-visible', $(this).scrollTop() >= threshold);
+			});
+
+			$('#shop-scroll-top').on('click', function (e) {
+				e.preventDefault();
+				$('html, body').animate({ scrollTop: 0 }, 800);
+			});
+
+		</script>
+		<script>
+			/* ── DELULU slider ───────────────────────────────────────── */
+			(function () {
+				var slider  = document.querySelector('.delulu-slider');
+				if (!slider) return;
+
+				var track   = slider.querySelector('.slider-track');
+				var dots    = slider.querySelectorAll('.dot');
+				var total   = slider.querySelectorAll('.slide').length;
+				var current = 0;
+				var startX  = 0;
+				var dragging = false;
+
+				function goTo(n) {
+					current = ((n % total) + total) % total;
+					track.style.transform = 'translateX(-' + (current * 100) + '%)';
+					dots.forEach(function (d, i) {
+						d.classList.toggle('active', i === current);
+					});
+				}
+
+				/* arrow buttons */
+				slider.querySelector('.slider-prev').addEventListener('click', function (e) {
+					e.stopPropagation();
+					goTo(current - 1);
+				});
+				slider.querySelector('.slider-next').addEventListener('click', function (e) {
+					e.stopPropagation();
+					goTo(current + 1);
+				});
+
+				/* dot buttons */
+				dots.forEach(function (d, i) {
+					d.addEventListener('click', function () { goTo(i); });
+				});
+
+				/* touch swipe */
+				track.addEventListener('touchstart', function (e) {
+					startX = e.touches[0].clientX;
+				}, { passive: true });
+
+				track.addEventListener('touchend', function (e) {
+					var dx = startX - e.changedTouches[0].clientX;
+					if (Math.abs(dx) > 40) goTo(current + (dx > 0 ? 1 : -1));
+				});
+
+				/* mouse drag */
+				track.addEventListener('mousedown', function (e) {
+					dragging = true;
+					startX = e.clientX;
+					slider.classList.add('is-dragging');
+				});
+
+				window.addEventListener('mouseup', function (e) {
+					if (!dragging) return;
+					dragging = false;
+					slider.classList.remove('is-dragging');
+					var dx = startX - e.clientX;
+					if (Math.abs(dx) > 40) goTo(current + (dx > 0 ? 1 : -1));
+				});
+			})();
+		</script>
+
+	</body>
+</html>

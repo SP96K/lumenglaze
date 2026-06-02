@@ -1,0 +1,384 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>LUMENGLAZE</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="LUMENGLAZE — Shop, Design &amp; Marketing, AI Solutions." />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/lumenglaze.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			/* ── HOME PAGE LAYOUT ───────────────────────────────────── */
+
+			body.home-page {
+				background: #0b0e20;
+				overflow: hidden; /* single screen on desktop */
+			}
+
+			body.home-page #page-wrapper {
+				background: none !important;
+				background-image: none !important;
+				display: flex;
+				flex-direction: column;
+				height: 100vh;
+			}
+
+			/* ── HEADER OVERRIDE for home (always solid, no alt) ─────── */
+
+			body.home-page #header {
+				background: rgba(11, 14, 32, 0.97) !important;
+				border-bottom: 1px solid rgba(201, 162, 82, 0.12);
+			}
+
+			/* ── MAIN (fills remaining height below fixed header) ─────── */
+
+			#home-main {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				padding-top: 3em; /* = header height */
+				min-height: 0;
+			}
+
+			/* ── TAGLINE STRIP ────────────────────────────────────────── */
+
+			.home-intro {
+				text-align: center;
+				padding: 1.6em 2em 1.4em;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+				flex-shrink: 0;
+			}
+
+			.home-intro p {
+				margin: 0;
+				font-size: 0.65em;
+				letter-spacing: 0.45em;
+				text-transform: uppercase;
+				color: rgba(255, 255, 255, 0.28);
+			}
+
+			/* ── GATES WRAPPER ────────────────────────────────────────── */
+
+			.gates-wrapper {
+				flex: 1;
+				display: flex;
+				min-height: 0;
+				padding: 1.1em 1.4em 1.4em;
+				gap: 1.1em;
+			}
+
+			/* ── INDIVIDUAL GATE ──────────────────────────────────────── */
+
+			.gate {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				padding: 2.6em 2.4em 2.4em;
+				position: relative;
+				border-radius: 14px;
+				border: 1px solid rgba(255, 255, 255, 0.07);
+				border-top: 3px solid var(--accent);
+				background:
+					linear-gradient(160deg, var(--accent-wash) 0%, transparent 50%),
+					rgba(255, 255, 255, 0.022);
+				text-decoration: none !important;
+				overflow: hidden;
+				transition: transform 0.35s ease, box-shadow 0.35s ease,
+				            border-color 0.35s ease, background 0.35s ease;
+			}
+
+			.gate:hover {
+				transform: translateY(-5px);
+				border-color: var(--accent-border);
+				background:
+					linear-gradient(160deg, var(--accent-wash-strong) 0%, transparent 55%),
+					rgba(255, 255, 255, 0.035);
+				box-shadow:
+					0 20px 50px rgba(0, 0, 0, 0.35),
+					0 0 0 1px var(--accent-border),
+					0 0 30px var(--accent-glow);
+			}
+
+			/* diagonal texture — barely visible, adds tactile depth */
+			.gate::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: repeating-linear-gradient(
+					-52deg,
+					transparent,
+					transparent 18px,
+					rgba(255, 255, 255, 0.012) 18px,
+					rgba(255, 255, 255, 0.012) 19px
+				);
+				border-radius: inherit;
+				pointer-events: none;
+			}
+
+			/* ── GATE TOP ─────────────────────────────────────────────── */
+
+			.gate-top {
+				position: relative;
+				z-index: 1;
+			}
+
+			/* icon in a rounded container */
+			.gate-icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 2.8em;
+				height: 2.8em;
+				font-size: 1.25em;
+				color: var(--accent);
+				background: var(--accent-wash-strong);
+				border: 1px solid var(--accent-border);
+				border-radius: 10px;
+				margin-bottom: 1.8em;
+				transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+			}
+
+			.gate:hover .gate-icon {
+				background: var(--accent-wash-hover);
+				border-color: var(--accent);
+				transform: scale(1.08);
+			}
+
+			/* ── GATE BODY ────────────────────────────────────────────── */
+
+			.gate-body {
+				flex: 1;
+				position: relative;
+				z-index: 1;
+			}
+
+			.gate-title {
+				font-family: 'Bebas Neue', sans-serif !important;
+				font-size: 3.2em !important;
+				line-height: 1 !important;
+				letter-spacing: 0.06em !important;
+				color: #fff !important;
+				margin: 0 0 0.45em 0 !important;
+				text-transform: uppercase;
+			}
+
+			.gate-desc {
+				font-size: 0.8em;
+				line-height: 1.85em;
+				color: rgba(255, 255, 255, 0.48);
+				letter-spacing: 0.03em;
+				margin: 0;
+			}
+
+			/* ── GATE FOOTER (CTA) ────────────────────────────────────── */
+
+			.gate-cta {
+				position: relative;
+				z-index: 1;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.6em;
+				margin-top: 2em;
+				font-size: 0.62em;
+				font-weight: 700;
+				letter-spacing: 0.35em;
+				text-transform: uppercase;
+				color: var(--accent);
+				border-bottom: none !important;
+				opacity: 0.7;
+				transition: gap 0.3s ease, opacity 0.3s ease;
+			}
+
+			.gate:hover .gate-cta {
+				gap: 1em;
+				opacity: 1;
+			}
+
+			.gate-cta .arrow {
+				display: inline-block;
+				transition: transform 0.3s ease;
+			}
+
+			.gate:hover .gate-cta .arrow {
+				transform: translateX(4px);
+			}
+
+			/* ── ACCENT COLOURS PER GATE ──────────────────────────────── */
+
+			.gate--shop {
+				--accent:             #c9a252;
+				--accent-wash:        rgba(201, 162, 82, 0.05);
+				--accent-wash-strong: rgba(201, 162, 82, 0.09);
+				--accent-wash-hover:  rgba(201, 162, 82, 0.16);
+				--accent-border:      rgba(201, 162, 82, 0.28);
+				--accent-glow:        rgba(201, 162, 82, 0.08);
+			}
+
+			.gate--design {
+				--accent:             #a855f7;
+				--accent-wash:        rgba(168, 85,  247, 0.05);
+				--accent-wash-strong: rgba(168, 85,  247, 0.09);
+				--accent-wash-hover:  rgba(168, 85,  247, 0.16);
+				--accent-border:      rgba(168, 85,  247, 0.28);
+				--accent-glow:        rgba(168, 85,  247, 0.08);
+			}
+
+			.gate--ai {
+				--accent:             #22d3ee;
+				--accent-wash:        rgba(34,  211, 238, 0.05);
+				--accent-wash-strong: rgba(34,  211, 238, 0.09);
+				--accent-wash-hover:  rgba(34,  211, 238, 0.16);
+				--accent-border:      rgba(34,  211, 238, 0.28);
+				--accent-glow:        rgba(34,  211, 238, 0.08);
+			}
+
+			/* ── FOOTER ───────────────────────────────────────────────── */
+
+			body.home-page #footer {
+				flex-shrink: 0;
+				padding: 1.2em 2em !important;
+				background: rgba(6, 8, 14, 0.6) !important;
+				border-top: 1px solid rgba(255, 255, 255, 0.04);
+			}
+
+			body.home-page #footer .icons {
+				margin: 0 0 0.4em 0;
+			}
+
+			body.home-page #footer .copyright {
+				margin: 0;
+			}
+
+			/* ── RESPONSIVE ───────────────────────────────────────────── */
+
+			@media screen and (max-width: 980px) {
+				body.home-page { overflow: auto; }
+				body.home-page #page-wrapper { height: auto; min-height: 100vh; }
+
+				.gates-wrapper {
+					flex-direction: column;
+					padding: 1em;
+					gap: 0.9em;
+				}
+
+				.gate {
+					min-height: 200px;
+					padding: 2em 1.8em 1.8em;
+					border-radius: 12px;
+				}
+
+				.gate-title { font-size: 2.6em !important; }
+			}
+
+			@media screen and (max-width: 480px) {
+				.gate-title { font-size: 2em !important; }
+				.gate { min-height: 170px; }
+				.gates-wrapper { padding: 0.8em; gap: 0.8em; }
+			}
+		</style>
+	</head>
+	<body class="home-page is-preload">
+
+		<!-- Page Wrapper -->
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header">
+				<h1><a href="index.html">LUMENGLAZE</a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="special">
+							<a href="#menu" class="menuToggle"><span>Menu</span></a>
+							<div id="menu">
+								<ul>
+									<li><a href="index.html">Home</a></li>
+									<li><a href="shop.html">Shop</a></li>
+									<li><a href="contact.html">Design &amp; Marketing</a></li>
+									<li><a href="contact.html">AI Solutions</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Main -->
+			<main id="home-main">
+
+				<!-- Tagline strip -->
+				<div class="home-intro">
+					<p>Delightful &nbsp;&middot;&nbsp; Crafted &nbsp;&middot;&nbsp; digital experience</p>
+				</div>
+
+				<!-- Three gates -->
+				<div class="gates-wrapper">
+
+					<!-- Shop -->
+					<a href="shop.html" class="gate gate--shop">
+						<div class="gate-top">
+							<span class="gate-icon"><i class="icon solid fa-shopping-bag"></i></span>
+						</div>
+						<div class="gate-body">
+							<h2 class="gate-title">Shop</h2>
+							<p class="gate-desc">Explore three new collections — DELULU, World Cup, and SUMMER. Premium craft. Limited drops.</p>
+						</div>
+						<span class="gate-cta">Enter <span class="arrow">&#8594;</span></span>
+					</a>
+
+					<!-- Design & Marketing -->
+					<a href="contact.html" class="gate gate--design">
+						<div class="gate-top">
+							<span class="gate-icon"><i class="icon solid fa-drafting-compass"></i></span>
+						</div>
+						<div class="gate-body">
+							<h2 class="gate-title">Design &amp; Marketing</h2>
+							<p class="gate-desc">Brand identity, creative direction, campaigns, and content. Let&#8217;s build something that lasts.</p>
+						</div>
+						<span class="gate-cta">Let&#8217;s Talk <span class="arrow">&#8594;</span></span>
+					</a>
+
+					<!-- AI Solutions -->
+					<a href="contact.html" class="gate gate--ai">
+						<div class="gate-top">
+							<span class="gate-icon"><i class="icon solid fa-brain"></i></span>
+						</div>
+						<div class="gate-body">
+							<h2 class="gate-title">AI Solutions</h2>
+							<p class="gate-desc">Intelligent tools, automations, and AI-powered systems built for your business — from idea to deployment.</p>
+						</div>
+						<span class="gate-cta">Let&#8217;s Talk <span class="arrow">&#8594;</span></span>
+					</a>
+
+				</div>
+
+			</main>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="https://www.instagram.com" target="_blank" rel="noopener" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="https://www.tiktok.com" target="_blank" rel="noopener" class="icon brands fa-tiktok"><span class="label">TikTok</span></a></li>
+					<li><a href="https://x.com" target="_blank" rel="noopener" class="icon brands fa-twitter"><span class="label">Twitter / X</span></a></li>
+					<li><a href="mailto:hello@lumenglaze.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; 2026 LUMENGLAZE</li>
+					<li>Wear the Light</li>
+				</ul>
+			</footer>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

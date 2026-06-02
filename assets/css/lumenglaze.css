@@ -1,0 +1,588 @@
+/*
+	LUMENGLAZE — Custom Brand Styles
+	Layered on top of Spectral by HTML5 UP
+*/
+
+/* ── FONTS ──────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,800;1,400&display=swap');
+
+/* ── CUSTOM PROPERTIES ──────────────────────────────────────────── */
+
+:root {
+	--gold:          #c9a252;
+	--gold-bright:   #e8c46a;
+	--gold-dim:      #8a6a2a;
+	--midnight:      #07090f;
+	--midnight-mid:  #0d1020;
+	--midnight-deep: #060810;
+	--white:         #ffffff;
+	--white-soft:    rgba(255, 255, 255, 0.75);
+	--white-faint:   rgba(255, 255, 255, 0.35);
+}
+
+/* ── BASE ────────────────────────────────────────────────────────── */
+
+body {
+	background: #0b0e20;
+}
+
+/* ── HEADER ──────────────────────────────────────────────────────── */
+
+#header {
+	background: transparent;
+	transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+#header h1 a {
+	font-family: 'Bebas Neue', sans-serif;
+	font-weight: 400;
+	font-size: 1.5em;
+	letter-spacing: 0.18em;
+	color: var(--gold);
+	border-bottom: none;
+	text-shadow: 0 0 20px rgba(201, 162, 82, 0.35);
+}
+
+#header h1 a:hover {
+	color: var(--gold-bright);
+	text-shadow: 0 0 30px rgba(232, 196, 106, 0.5);
+}
+
+/* header on dark bg loses the alt teal, becomes the midnight overlay */
+#header:not(.alt) {
+	background: rgba(7, 9, 15, 0.96);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	border-bottom: 1px solid rgba(201, 162, 82, 0.15);
+}
+
+/* ── PAGE WRAPPER BACKGROUND (overrides landing parallax) ───────── */
+
+/* main.css applies banner.jpg as a fixed background to the whole page wrapper;
+   we replace it with our dark brand gradient */
+body.landing #page-wrapper {
+	background-image:
+		radial-gradient(ellipse 80% 60% at 20% 30%, rgba(201, 162, 82, 0.07) 0%, transparent 65%),
+		radial-gradient(ellipse 60% 50% at 80% 60%, rgba(120, 50, 200, 0.05) 0%, transparent 65%),
+		linear-gradient(180deg, #0b0e20 0%, #0d1028 40%, #0b0e20 100%) !important;
+	background-attachment: fixed !important;
+}
+
+/* mobile fallback — main.css applies banner.jpg directly to #banner on mobile */
+body.is-mobile.landing #banner,
+body.is-mobile.landing .wrapper.style4 {
+	background-image: none !important;
+}
+
+/* ── BANNER ──────────────────────────────────────────────────────── */
+
+@keyframes shimmer-sweep {
+	0%   { background-position: -300% center; }
+	100% { background-position: 300% center; }
+}
+
+@keyframes glow-pulse {
+	0%, 100% { opacity: 0.6; }
+	50%       { opacity: 1;   }
+}
+
+@keyframes fadeup {
+	from { opacity: 0; transform: translateY(20px); }
+	to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* shrink banner so the first collection peeks at the bottom */
+#banner {
+	background-color: #0b0e20;
+	height: 82vh !important;
+	min-height: 28em !important;
+}
+
+/* the dark overlay on the banner — keep it subtle */
+#banner:after {
+	background: rgba(6, 8, 16, 0.4) !important;
+}
+
+/* ── DOWN ARROW ──────────────────────────────────────────────────── */
+
+@keyframes bounce-down {
+	0%, 100% { transform: translateY(0);   opacity: 0.5; }
+	50%       { transform: translateY(8px); opacity: 1;   }
+}
+
+.banner-arrow {
+	display: inline-block;
+	margin-top: 1.8em;
+	color: var(--gold);
+	font-size: 1.1em;
+	border-bottom: none !important;
+	opacity: 0.6;
+	animation: bounce-down 2.2s ease-in-out infinite;
+}
+
+.banner-arrow:hover {
+	opacity: 1;
+	border-bottom: none !important;
+}
+
+/* eyebrow label above the main title */
+.brand-eyebrow {
+	display: block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 0.65em;
+	font-weight: 600;
+	letter-spacing: 0.45em;
+	text-transform: uppercase;
+	color: var(--gold);
+	opacity: 0.85;
+	margin-bottom: 1em;
+	position: relative;
+	z-index: 1;
+}
+
+/* animated gold title */
+#banner h2 {
+	font-family: 'Bebas Neue', sans-serif !important;
+	font-size: 5.5em !important;
+	letter-spacing: 0.22em !important;
+	line-height: 1 !important;
+	padding: 0.2em 0.5em !important;
+
+	background: linear-gradient(
+		90deg,
+		var(--gold-dim)    0%,
+		var(--gold)        25%,
+		var(--gold-bright) 50%,
+		var(--gold)        75%,
+		var(--gold-dim)   100%
+	);
+	background-size: 300% auto;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+
+	animation: shimmer-sweep 5s linear infinite;
+}
+
+/* the decorative top/bottom lines on the h2 — gold instead of white */
+#banner h2:before,
+#banner h2:after {
+	background: var(--gold) !important;
+	opacity: 0.6;
+}
+
+#banner p {
+	color: var(--white-soft);
+	letter-spacing: 0.2em;
+	line-height: 2em;
+}
+
+#banner .more {
+	color: var(--gold);
+	border-color: rgba(201, 162, 82, 0.4);
+}
+
+#banner .more:after {
+	background-image: url("images/arrow.svg");
+	filter: sepia(1) saturate(3) hue-rotate(5deg) brightness(1.3);
+}
+
+/* ── PRIMARY BUTTON → GOLD ───────────────────────────────────────── */
+
+.button.primary {
+	background-color: var(--gold) !important;
+	border-color:     var(--gold) !important;
+	color:            #06080e !important;
+	font-weight: 700;
+	letter-spacing: 0.2em;
+}
+
+.button.primary:hover {
+	background-color: var(--gold-bright) !important;
+	border-color:     var(--gold-bright) !important;
+}
+
+/* outlined button style */
+.button:not(.primary) {
+	border-color: rgba(201, 162, 82, 0.5);
+	color: var(--gold);
+}
+
+.button:not(.primary):hover {
+	border-color: var(--gold);
+	color: var(--gold-bright);
+}
+
+/* ── COLLECTIONS INTRO (style1) ──────────────────────────────────── */
+
+.wrapper.style1 {
+	background-color: #0b0e20 !important;
+	background-image:
+		radial-gradient(ellipse 80% 50% at 50% 50%, rgba(201, 162, 82, 0.06) 0%, transparent 70%);
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.wrapper.style1 h2,
+.wrapper.style1 h3,
+.wrapper.style1 h4,
+.wrapper.style1 h5,
+.wrapper.style1 h6 {
+	color: var(--white) !important;
+}
+
+.wrapper.style1 header.major h2 {
+	border-color: rgba(201, 162, 82, 0.3) !important;
+}
+
+.wrapper.style1 header.major p,
+.wrapper.style1 header p {
+	color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* collection name labels row */
+.collection-labels {
+	display: block;
+	text-align: center;
+	font-size: 0.75em;
+	letter-spacing: 0.4em;
+	text-transform: uppercase;
+	color: var(--gold) !important;
+	opacity: 0.8;
+	margin-top: 1.5em;
+}
+
+/* icon accent colors */
+.wrapper.style1 .icon.major.style1 {
+	border-color: rgba(201, 162, 82, 0.3) !important;
+	color: var(--gold) !important;
+}
+
+.wrapper.style1 .icon.major.style2 {
+	border-color: rgba(180, 100, 255, 0.3) !important;
+	color: #c084fc !important;
+}
+
+.wrapper.style1 .icon.major.style3 {
+	border-color: rgba(255, 150, 50, 0.3) !important;
+	color: #fb923c !important;
+}
+
+/* ── SPOTLIGHT PANELS ────────────────────────────────────────────── */
+
+/* make image div stretch full height of spotlight row */
+.spotlight .image {
+	align-self: stretch !important;
+	position: relative;
+	overflow: hidden;
+}
+
+/* gradient art div fills the entire image panel */
+.spotlight .image .gradient-art {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	min-height: 360px;
+}
+
+/* DELULU — electric pink + deep violet */
+.delulu-img .gradient-art {
+	background:
+		linear-gradient(160deg,
+			#ff0080 0%,
+			#cc00aa 20%,
+			#7928ca 55%,
+			#3a0070 80%,
+			#1a0040 100%
+		);
+}
+
+/* fabric-weave texture overlay */
+.delulu-img .gradient-art::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background:
+		repeating-linear-gradient(
+			45deg,
+			transparent,
+			transparent 6px,
+			rgba(255, 255, 255, 0.04) 6px,
+			rgba(255, 255, 255, 0.04) 12px
+		),
+		repeating-linear-gradient(
+			-45deg,
+			transparent,
+			transparent 6px,
+			rgba(255, 255, 255, 0.02) 6px,
+			rgba(255, 255, 255, 0.02) 12px
+		);
+}
+
+/* WORLD CUP — pitch green + championship gold */
+.worldcup-img .gradient-art {
+	background:
+		linear-gradient(140deg,
+			#003d1f 0%,
+			#005c30 25%,
+			#007a42 50%,
+			#b8942a 78%,
+			#e8c060 100%
+		);
+}
+
+/* grass stripe pattern */
+.worldcup-img .gradient-art::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background:
+		repeating-linear-gradient(
+			180deg,
+			transparent,
+			transparent 28px,
+			rgba(0, 0, 0, 0.07) 28px,
+			rgba(0, 0, 0, 0.07) 56px
+		);
+}
+
+/* SUMMER — coral sunrise + warm amber gold */
+.summer-img .gradient-art {
+	background:
+		linear-gradient(150deg,
+			#c45200 0%,
+			#e86b1a 20%,
+			#f59b2a 45%,
+			#ffd035 70%,
+			#fff0a0 100%
+		);
+}
+
+/* soft sun-glow shimmer */
+.summer-img .gradient-art::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(
+			ellipse 60% 40% at 35% 45%,
+			rgba(255, 255, 255, 0.18) 0%,
+			transparent 70%
+		),
+		radial-gradient(
+			ellipse 30% 25% at 70% 70%,
+			rgba(255, 200, 50, 0.12) 0%,
+			transparent 60%
+		);
+}
+
+/* collection tag — small eyebrow label above h2 */
+.collection-tag {
+	display: inline-block;
+	font-size: 0.62em;
+	font-weight: 600;
+	letter-spacing: 0.45em;
+	text-transform: uppercase;
+	color: var(--gold);
+	opacity: 0.85;
+	margin-bottom: 0.6em;
+	border-bottom: 1px solid rgba(201, 162, 82, 0.3);
+	padding-bottom: 0.4em;
+}
+
+/* spotlight content headings */
+.spotlight .content h2 {
+	font-family: 'Bebas Neue', sans-serif;
+	font-size: 2.8em !important;
+	letter-spacing: 0.15em !important;
+	line-height: 1 !important;
+	color: var(--white);
+}
+
+.spotlight .content p {
+	color: var(--white-soft);
+	line-height: 1.9em;
+}
+
+/* alt-row tints override */
+.spotlight:nth-child(1) { background-color: rgba(10, 12, 24, 0.6) !important; }
+.spotlight:nth-child(2) { background-color: rgba(8, 10, 20, 0.75) !important; }
+.spotlight:nth-child(3) { background-color: rgba(6, 8, 18, 0.85) !important; }
+
+/* ── BRAND VALUES (style3) ───────────────────────────────────────── */
+
+.wrapper.style3 {
+	background-color: #0c0e1c !important;
+	background-image:
+		radial-gradient(ellipse 60% 40% at 50% 100%, rgba(201, 162, 82, 0.05) 0%, transparent 70%);
+}
+
+.wrapper.style3 h2,
+.wrapper.style3 h3,
+.wrapper.style3 header.major h2 {
+	color: var(--white) !important;
+}
+
+.wrapper.style3 header.major h2 {
+	border-color: rgba(201, 162, 82, 0.25) !important;
+}
+
+.wrapper.style3 header.major p,
+.wrapper.style3 header p {
+	color: rgba(255, 255, 255, 0.55) !important;
+}
+
+.wrapper.style3 ul.features li {
+	border-color: rgba(201, 162, 82, 0.12) !important;
+}
+
+.wrapper.style3 ul.features li:before {
+	color: var(--gold) !important;
+}
+
+.wrapper.style3 ul.features li h3 {
+	color: var(--white) !important;
+}
+
+.wrapper.style3 ul.features li p {
+	color: rgba(255, 255, 255, 0.55);
+}
+
+/* ── CTA / NEWSLETTER (style4) ───────────────────────────────────── */
+
+.wrapper.style4 {
+	background-color: transparent !important;
+	background:
+		linear-gradient(
+			135deg,
+			#0d1028 0%,
+			#120a28 50%,
+			#0a0d22 100%
+		) !important;
+	border-top: 1px solid rgba(201, 162, 82, 0.18);
+}
+
+.wrapper.style4 h2 {
+	color: var(--white) !important;
+}
+
+.wrapper.style4 header p {
+	color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* ── FOOTER ──────────────────────────────────────────────────────── */
+
+#footer,
+body.landing #footer,
+body.is-mobile.landing #footer {
+	background: var(--midnight-deep) !important;
+	background-color: var(--midnight-deep) !important;
+	border-top: 1px solid rgba(201, 162, 82, 0.1);
+}
+
+#footer .icons a {
+	color: rgba(255, 255, 255, 0.35);
+}
+
+#footer .icons a:hover {
+	color: var(--gold);
+}
+
+#footer .copyright {
+	color: rgba(255, 255, 255, 0.2);
+	font-size: 0.7em;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+}
+
+/* ── SLIDE-OUT MENU PANEL ────────────────────────────────────────── */
+
+#menu {
+	background: rgba(7, 9, 20, 0.94) !important;
+	backdrop-filter: blur(24px);
+	-webkit-backdrop-filter: blur(24px);
+	border-left: 1px solid rgba(201, 162, 82, 0.14);
+	color: #fff !important;
+}
+
+#menu ul > li {
+	border-top-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+#menu ul > li > a {
+	color: rgba(255, 255, 255, 0.58);
+	transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+#menu ul > li > a:hover {
+	color: #c9a252;
+	padding-left: 0.4em;
+}
+
+#menu .close {
+	filter: invert(1);
+	opacity: 0.4;
+	transition: opacity 0.2s ease;
+}
+
+#menu .close:hover {
+	opacity: 0.9;
+}
+
+/* ── HEADER MAJOR DIVIDER ────────────────────────────────────────── */
+
+header.major h2 {
+	border-color: rgba(201, 162, 82, 0.25);
+}
+
+/* ── RESPONSIVE TWEAKS ───────────────────────────────────────────── */
+
+@media screen and (max-width: 980px) {
+
+	/* stack spotlights — image on top with fixed height */
+	.spotlight .image .gradient-art {
+		min-height: 280px;
+		position: relative;
+		display: block;
+	}
+
+	.spotlight .image {
+		height: 280px;
+	}
+
+	.spotlight .content {
+		text-align: center;
+	}
+
+	.collection-tag {
+		display: block;
+		text-align: center;
+	}
+
+}
+
+@media screen and (max-width: 736px) {
+
+	#banner h2 {
+		font-size: 3em !important;
+		letter-spacing: 0.15em !important;
+	}
+
+	.brand-eyebrow {
+		font-size: 0.55em;
+	}
+
+	.spotlight .image {
+		height: 220px;
+	}
+
+}
+
+@media screen and (max-width: 480px) {
+
+	#banner h2 {
+		font-size: 2.4em !important;
+	}
+
+}
