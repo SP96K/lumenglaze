@@ -14,6 +14,32 @@
 		<link rel="stylesheet" href="assets/css/lumenglaze.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<style>
+			/* ── SHOP PAGE BACKGROUND ──────────────────────────────── */
+			body.shop-page {
+				background: #0b0e20;
+			}
+
+			body.shop-page #page-wrapper,
+			body.landing.shop-page #page-wrapper {
+				background-image:
+					radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201, 162, 82, 0.04) 0%, transparent 70%),
+					linear-gradient(180deg, #0b0e20 0%, #0d1028 40%, #0b0e20 100%) !important;
+			}
+
+			/* steel blue only on the banner (top of page) */
+			body.shop-page #banner {
+				background-color: #152a48 !important;
+			}
+
+			/* banner spacing */
+			body.shop-page .brand-eyebrow {
+				margin-bottom: 2.2em;
+			}
+
+			body.shop-page #banner h2 {
+				margin-bottom: 0.7em !important;
+			}
+
 			/* ── HOME BUTTON (left) ─────────────────────────────────── */
 
 			/* main.css sets opacity:0 on h1 in alt mode — always show it */
@@ -84,6 +110,78 @@
 				font-size: 0.82em;
 				display: inline-flex;
 				align-items: center;
+			}
+
+			/* ── COLLECTION SPOTLIGHT CARDS ────────────────────────── */
+
+			/* 2-column grid — 2 cards per row */
+			#two.wrapper.alt {
+				padding: 1.4em 1.5em 0.2em !important;
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1.2em;
+				background: transparent !important;
+			}
+
+			#two .spotlight {
+				border-radius: 14px;
+				border: 1px solid rgba(255, 255, 255, 0.07);
+				overflow: hidden;
+				transition: border-color 0.3s ease, box-shadow 0.3s ease;
+				flex-direction: column !important;
+			}
+
+			/* progressively darker shades — lightest to darkest */
+			#two .spotlight:nth-child(1) { background-color: #272729 !important; }
+			#two .spotlight:nth-child(2) { background-color: #1f1f21 !important; }
+			#two .spotlight:nth-child(3) { background-color: #171719 !important; }
+			#two .spotlight:nth-child(4) { background-color: #131315 !important; }
+			#two .spotlight:nth-child(5) { background-color: #0f0f11 !important; }
+
+			/* odd last card spans the full row */
+			#two .spotlight:last-child:nth-child(odd) {
+				grid-column: 1 / -1;
+			}
+
+			#two .spotlight:hover {
+				border-color: rgba(201, 162, 82, 0.2);
+				box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+			}
+
+			/* image panel: full width, fixed height for stacked layout */
+			#two .spotlight .image {
+				border-radius: 0;
+				width: 100% !important;
+				height: 260px;
+				min-height: 0 !important;
+				align-self: auto !important;
+			}
+
+			#two .spotlight .image .gradient-art,
+			#two .spotlight .image .delulu-slider {
+				height: 260px !important;
+				min-height: 0 !important;
+			}
+
+			#two .spotlight .image .gradient-art,
+			#two .spotlight .image .art-slider {
+				height: 260px !important;
+				min-height: 0 !important;
+			}
+			/* content area for stacked cards */
+			#two .spotlight .content {
+				padding: 1.8em 2em !important;
+				text-align: left !important;
+			}
+
+			#two .spotlight .content h2 {
+				font-size: 2.2em !important;
+				margin-bottom: 0.3em !important;
+			}
+
+			#two .spotlight .content p {
+				font-size: 0.82em !important;
+				line-height: 1.7em !important;
 			}
 
 			/* ── PLATFORM SHOP BUTTONS ─────────────────────────────── */
@@ -157,6 +255,70 @@
 			/* hide center bar on small screens where it'd overlap */
 			@media screen and (max-width: 736px) {
 				#shop-scroll-bar { display: none; }
+
+				/* ── compact cards on mobile — single column ── */
+				#two.wrapper.alt {
+					padding: 0.8em 0.75em 0.2em !important;
+					gap: 0.75em;
+					grid-template-columns: 1fr;
+				}
+
+				/* reset full-row span — not needed in single column */
+				#two .spotlight:last-child:nth-child(odd) {
+					grid-column: auto;
+				}
+
+				/* shorter image panel */
+				#two .spotlight .image {
+					height: 200px !important;
+					min-height: 0 !important;
+				}
+
+				#two .spotlight .image .gradient-art,
+				#two .spotlight .image .delulu-slider {
+					height: 200px !important;
+					min-height: 0 !important;
+				}
+
+				#two .spotlight .image .gradient-art,
+				#two .spotlight .image .art-slider {
+					height: 200px !important;
+					min-height: 0 !important;
+				}
+
+				/* tighter content area */
+				#two .spotlight .content {
+					padding: 1.4em 1.4em 1.4em !important;
+					text-align: left !important;
+				}
+
+				#two .spotlight .content h2 {
+					font-size: 2em !important;
+					margin-bottom: 0.3em !important;
+				}
+
+				#two .spotlight .content p {
+					font-size: 0.8em !important;
+					line-height: 1.6em !important;
+					margin-bottom: 0 !important;
+				}
+
+				/* compact shop buttons */
+				.shop-btns {
+					margin: 1em 0 1.2em 0;
+					gap: 0.5em;
+				}
+
+				.shop-btn {
+					width: 100% !important;
+					padding: 0.55em 1em;
+					font-size: 0.65em !important;
+				}
+
+				.collection-tag {
+					font-size: 0.55em;
+					margin-bottom: 0.4em;
+				}
 			}
 
 			/* ── DELULU SLIDER ──────────────────────────────────────── */
@@ -164,7 +326,7 @@
 				position: absolute;
 				inset: 0;
 				overflow: hidden;
-				background: #1a0040;
+				background: linear-gradient(160deg, #5b1a8a 0%, #3b0f7a 30%, #220d55 60%, #100630 85%, #080218 100%);
 				cursor: grab;
 			}
 
@@ -248,6 +410,121 @@
 				background: #c9a252;
 				transform: scale(1.3);
 			}
+
+
+			/* ── ART SLIDER ──────────────────────────────────────── */
+			.art-slider {
+				position: absolute;
+				inset: 0;
+				overflow: hidden;
+				background: linear-gradient(160deg, #200014 0%, #3d0134 30%, #25121c 60%, #2b011a 85%, #2f0331 100%);
+				cursor: grab;
+			}
+
+			.art-slider.is-dragging { cursor: grabbing; }
+
+			.art-slider .slider-track {
+				display: flex;
+				height: 100%;
+				transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+				will-change: transform;
+			}
+
+			.art-slider.is-dragging .slider-track {
+				transition: none;
+			}
+
+			.art-slider .slide {
+				flex: 0 0 100%;
+				height: 100%;
+			}
+
+			.art-slider .slide img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+				user-select: none;
+				-webkit-user-drag: none;
+				pointer-events: none;
+			}
+			
+			/* ──DADJOKE SLIDER ──────────────────────────────────────── */
+			.dadjoke-slider {
+				position: absolute;
+				inset: 0;
+				overflow: hidden;
+				background: linear-gradient(160deg, #8a301a 0%, #7a360f 30%, #55330d 60%, #401807 85%, #310a03 100%);
+				cursor: grab;
+			}
+
+			.dadjoke-slider.is-dragging { cursor: grabbing; }
+
+			.dadjoke-slider .slider-track {
+				display: flex;
+				height: 100%;
+				transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+				will-change: transform;
+			}
+
+			.dadjoke-slider.is-dragging .slider-track {
+				transition: none;
+			}
+
+			.dadjoke-slider .slide {
+				flex: 0 0 100%;
+				height: 100%;
+			}
+
+			.dadjoke-slider .slide img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+				user-select: none;
+				-webkit-user-drag: none;
+				pointer-events: none;
+			}
+			
+			/* ── SUMMER SLIDER ──────────────────────────────────────── */
+
+			.summer-slider {
+				position: absolute;
+				inset: 0;
+				overflow: hidden;
+				background: linear-gradient(160deg, #8a6a1a 0%, #717a0f 30%, #3c550d 60%, #133006 85%, #0f1802 100%);
+				cursor: grab;
+			}
+
+			.summer-slider.is-dragging { cursor: grabbing; }
+
+			.summer-slider .slider-track {
+				display: flex;
+				height: 100%;
+				transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+				will-change: transform;
+			}
+
+			.summer-slider.is-dragging .slider-track {
+				transition: none;
+			}
+
+			.summer-slider .slide {
+				flex: 0 0 100%;
+				height: 100%;
+			}
+
+			.summer-slider .slide img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+				user-select: none;
+				-webkit-user-drag: none;
+				pointer-events: none;
+			}
+
+			
 		</style>
 	</head>
 	<body class="landing shop-page is-preload">
@@ -292,7 +569,7 @@
 					The glazing standard<br />
 					</p>
 					<ul class="actions special">
-						<li><a href="#delulu" class="button primary scrolly">Explore Collections</a></li>
+						<li><a href="#delulu" class="button primary scrolly">Explore All Collections</a></li>
 					</ul>
 					<a href="#delulu" class="banner-arrow scrolly"><span class="icon solid fa-chevron-down"></span></a>
 				</div>
@@ -301,110 +578,237 @@
 			<!-- Collections Spotlights -->
 			<section id="two" class="wrapper alt style2">
 
-				<!-- DELULU -->
-				<section id="delulu" class="spotlight">
-					<div class="image delulu-img">
-					<div class="delulu-slider">
-						<div class="slider-track">
-							<div class="slide"><img src="images/Delulu/delulu-floral-lettering-tee-cute-pink-script-retro-flower-design.jpg" alt="DELULU Collection" /></div>
-							<div class="slide"><img src="images/Delulu/delulu-floral-lettering-tee-cute-pink-script-retro-flower-design%20(1).jpg" alt="DELULU Collection" /></div>
-							<div class="slide"><img src="images/Delulu/delulu-floral-lettering-tee-cute-pink-script-retro-flower-design%20(2).jpg" alt="DELULU Collection" /></div>
-							<div class="slide"><img src="images/Delulu/delulu-floral-lettering-tee-cute-pink-script-retro-flower-design%20(3).jpg" alt="DELULU Collection" /></div>
-							<div class="slide"><img src="images/Delulu/delulu-floral-lettering-tee-cute-pink-script-retro-flower-design%20(4).jpg" alt="DELULU Collection" /></div>
+
+
+				<!-- SUMMER -->
+				<section id="summer" class="spotlight">
+					
+					<div class="image summer-img"><div class="gradient-art"></div>
+
+					
+				
+						<div class="summer-slider" ; class="slider-track">
+							<div class="image"><img src="images/Summer/sunnyman.png" alt="SUMMER Collection" /></div>
+				<!--		<div class="slide"><img src="images/Dad_joke/jokeman.png" alt="DADJOKE Collection" /></div>
+					-->		
 						</div>
-						<button class="slider-btn slider-prev" aria-label="Previous image"><span class="icon solid fa-chevron-left"></span></button>
+				
+				
+					</div>
+
+					<div class="content">
+						<span class="collection-tag">Collection</span>
+						<h2>SUMMER</h2>
+						<p>
+							Designed for fun escapades : beach days, music festivals, 
+							road trips, rooftop nights and more. Colors inspired by the glazing sun, 
+							deep oceans, beach sands and vibrant energy.
+						</p>
+						<ul class="shop-btns">
+							<!-- TO RE-ENABLE: remove the comment tags around the li elements below -->
+							<li><a href="https://www.amazon.com/dp/B0H7HKFZS9?customId=B0752XK16C&customizationToken=MC_Assembly_1%23B0752XK16C&th=1&psc=1" target="_blank" rel="noopener" class="shop-btn shop-btn--amazon"><span class="icon brands fa-amazon"></span> Amazon</a></li>
+							<li><a href="https://www.tiktok.com/t/ZT96EA6uc5yk4-zzwTV/" target="_blank" rel="noopener" class="shop-btn shop-btn--tiktok"><span class="icon brands fa-tiktok"></span> TikTok Shop</a></li>
+							<!-- <li><a href="https://www.etsy.com" target="_blank" rel="noopener" class="shop-btn shop-btn--etsy"><span class="icon solid fa-store"></span> Etsy</a></li> -->
+						</ul>
+					</div>
+				</section>
+
+
+
+				<!-- DADJOKE -->
+				<section id="chrome" class="spotlight">
+					<div class="image chrome-img"><div class="gradient-art"></div>
+
+					<div class="dadjoke-slider">
+						
+						<div class="slider-track">
+							<div class="image"><img src="images/Dad_joke/jokewoman.png" alt="DADJOKE Collection" /></div>
+				<!--		<div class="slide"><img src="images/Dad_joke/jokeman.png" alt="DADJOKE Collection" /></div>
+					-->		
+						</div>
+				<!--	<button class="slider-btn slider-prev" aria-label="Previous image"><span class="icon solid fa-chevron-left"></span></button>
 						<button class="slider-btn slider-next" aria-label="Next image"><span class="icon solid fa-chevron-right"></span></button>
-						<div class="slider-dots">
+					-->
+				<!--	<div class="slider-dots">
 							<span class="dot active"></span>
 							<span class="dot"></span>
 							<span class="dot"></span>
 							<span class="dot"></span>
+						</div>	
+					-->
+						</div>
+						
+					</div>
+
+					<div class="content">
+						<span class="collection-tag">Collection</span>
+						<h2>DAD JOKE</h2>
+						<p>
+							Life is a blessing, you should own it. Wear the joke with style. 
+							Laid-back comfort wearables, perfect for anyone who loves a good laugh.
+						</p>
+						<ul class="shop-btns">
+							<!-- TO RE-ENABLE: remove the comment tags around the li elements below -->
+							<li><a href="https://www.amazon.com/dp/B0H7LQVX85?customId=B0752XJX9Q&customizationToken=MC_Assembly_1%23B0752XJX9Q&th=1&psc=1" target="_blank" rel="noopener" class="shop-btn shop-btn--amazon"><span class="icon brands fa-amazon"></span> Amazon</a></li>
+							<li><a href="https://www.tiktok.com/t/ZT96ESAHhDMxV-ftXC5/" target="_blank" rel="noopener" class="shop-btn shop-btn--tiktok"><span class="icon brands fa-tiktok"></span> TikTok Shop</a></li>
+							<!-- <li><a href="https://www.etsy.com" target="_blank" rel="noopener" class="shop-btn shop-btn--etsy"><span class="icon solid fa-store"></span> Etsy</a></li> -->
+						</ul>
+					</div>
+					
+				</section>
+
+				
+				<!-- DELULU -->
+				<section id="delulu" class="spotlight">
+				<div class="image delulu-img">
+					<div class="delulu-slider">
+						<div class="slider-track">
+							<div class="slide"><img src="images/Delulu/cb018083-988e-4b1f-ba65-399a3dace00c.png" alt="DELULU Collection" /></div>
+				<!--		<div class="slide"><img src="images/Delulu/aa73f694-8d3a-4269-9e0f-13321ce6b856.png" alt="DELULU Collection" /></div>
+							<div class="slide"><img src="images/Delulu/9968482b-e35a-49b5-ab13-2aecc0b3269f.png" alt="DELULU Collection" /></div>
+							<div class="slide"><img src="images/Delulu/c320a5a3-0ba1-472f-a8aa-ad956a7e4130.png" alt="DELULU Collection" /></div>
+					-->		
+						</div>
+						
+				<!--		
+						<button class="slider-btn slider-prev" aria-label="Previous image"><span class="icon solid fa-chevron-left"></span></button>
+						<button class="slider-btn slider-next" aria-label="Next image"><span class="icon solid fa-chevron-right"></span></button>
+					-->
+				<!--	<div class="slider-dots">
+							<span class="dot active"></span>
+							<span class="dot"></span>
+							<span class="dot"></span>
 							<span class="dot"></span>
 						</div>
+					-->
 					</div>
 				</div>
 					<div class="content">
 						<span class="collection-tag">Collection</span>
 						<h2>DELULU</h2>
-						<p>Dare to be delusionally, magnificently yourself. DELULU is
-						LUMENGLAZE's maximalist fantasy — electric colors, fearless
-						silhouettes, and the kind of dressing that turns heads before you
-						enter the room. Reality is overrated. Dress for the life
-						you&#8217;re manifesting.</p>
+						<p>
+							Reality is overrated. Dare to fantasize. 
+							Be unapologetically Magnificent and Fearless. 
+							Dress for the life you manifest.
+						</p>
 						<ul class="shop-btns">
-							<li><a href="https://www.amazon.com" target="_blank" rel="noopener" class="shop-btn shop-btn--amazon"><span class="icon brands fa-amazon"></span> Amazon</a></li>
-							<li><a href="https://www.tiktok.com/shop" target="_blank" rel="noopener" class="shop-btn shop-btn--tiktok"><span class="icon brands fa-tiktok"></span> TikTok Shop</a></li>
-							<li><a href="https://www.etsy.com" target="_blank" rel="noopener" class="shop-btn shop-btn--etsy"><span class="icon solid fa-store"></span> Etsy</a></li>
+							<!-- TO RE-ENABLE: remove the comment tags around the li elements below -->
+							<li><a href="https://www.amazon.com/dp/B0H7NMLMCP?customId=B0GWRYHJ2K&customizationToken=MC_Assembly_1%23B0GWRYHJ2K&th=1&psc=1" target="_blank" rel="noopener" class="shop-btn shop-btn--amazon"><span class="icon brands fa-amazon"></span> Amazon</a></li>
+							<li><a href="https://www.tiktok.com/t/ZT96EUqqSpCTs-VsTkb/" target="_blank" rel="noopener" class="shop-btn shop-btn--tiktok"><span class="icon brands fa-tiktok"></span> TikTok Shop</a></li>
+							<!-- <li><a href="https://www.etsy.com" target="_blank" rel="noopener" class="shop-btn shop-btn--etsy"><span class="icon solid fa-store"></span> Etsy</a></li> -->
 						</ul>
 					</div>
 				</section>
 
-				<!-- World Cup -->
-				<section id="worldcup" class="spotlight">
-					<div class="image worldcup-img"><div class="gradient-art"></div></div>
+				<!-- ART -->
+				<section id="art" class="spotlight">
+					
+				<div class="image noir-img"><div class="gradient-art"></div>
+				
+					<div class="art-slider">
+						<div class="slider-track">
+							<div class="image"><img src="images/Art/3graces.png" alt="ART Collection" /></div>
+				<!--		<div class="slide"><img src="images/Art/3gracespluspull.png" alt="DELULU Collection" /></div>
+					-->		
+						</div>
+				<!--	<button class="slider-btn slider-prev" aria-label="Previous image"><span class="icon solid fa-chevron-left"></span></button>
+						<button class="slider-btn slider-next" aria-label="Next image"><span class="icon solid fa-chevron-right"></span></button>
+					-->
+				<!--	<div class="slider-dots">
+							<span class="dot active"></span>
+							<span class="dot"></span>
+							<span class="dot"></span>
+							<span class="dot"></span>
+						</div>	
+					-->
+					</div>
+
+				</div>
+					
 					<div class="content">
 						<span class="collection-tag">Collection</span>
-						<h2>WORLD CUP</h2>
-						<p>The beautiful game meets refined streetwear. The World Cup
-						collection channels stadium energy into every stitch — athletic
-						precision fused with street-ready silhouettes. Built for those
-						who celebrate with style. Limited edition. Globally inspired.
-						Worn everywhere.</p>
+						<h2>ART</h2>
+						<p>
+							Find your artistic voice with our curated selection of unique pieces.
+							Designs that sit comfortably in the everyday. An invitation 
+							of slow looks and soft conversations. 							
+						</p>
 						<ul class="shop-btns">
-							<li><a href="https://www.amazon.com" target="_blank" rel="noopener" class="shop-btn shop-btn--amazon"><span class="icon brands fa-amazon"></span> Amazon</a></li>
-							<li><a href="https://www.tiktok.com/shop" target="_blank" rel="noopener" class="shop-btn shop-btn--tiktok"><span class="icon brands fa-tiktok"></span> TikTok Shop</a></li>
-							<li><a href="https://www.etsy.com" target="_blank" rel="noopener" class="shop-btn shop-btn--etsy"><span class="icon solid fa-store"></span> Etsy</a></li>
+							<!-- TO RE-ENABLE: remove the comment tags around the li elements below -->
+							<li><a href="https://www.amazon.com/dp/B0DXTHYXMD?customId=B0752XJYTP&customizationToken=MC_Assembly_1%23B0752XJYTP&th=1&psc=1" target="_blank" rel="noopener" class="shop-btn shop-btn--amazon"><span class="icon brands fa-amazon"></span> Amazon</a></li>
+							<li><a href="https://www.tiktok.com/t/ZT96EDw6cVGHE-zTQY5/" target="_blank" rel="noopener" class="shop-btn shop-btn--tiktok"><span class="icon brands fa-tiktok"></span> TikTok Shop</a></li>
+							<!-- <li><a href="https://www.etsy.com" target="_blank" rel="noopener" class="shop-btn shop-btn--etsy"><span class="icon solid fa-store"></span> Etsy</a></li> -->
+						</ul>
+					</div>
+
+
+				</section>
+
+				<!-- NOTORIOUS -->
+				<section id="notorious" class="spotlight">
+					<div class="image chrome-img"><div class="gradient-art"></div></div>
+					<div class="content">
+						<span class="collection-tag">Collection</span>
+						<h2>NOTORIOUS</h2>
+						<p>COMING SOON !</p>
+						<ul class="shop-btns">
+							<!-- TO RE-ENABLE: remove the comment tags around the li elements below -->
+							<!-- <li><a href="https://www.amazon.com" target="_blank" rel="noopener" class="shop-btn shop-btn--amazon"><span class="icon brands fa-amazon"></span> Amazon</a></li> -->
+							<!-- <li><a href="https://www.tiktok.com/shop" target="_blank" rel="noopener" class="shop-btn shop-btn--tiktok"><span class="icon brands fa-tiktok"></span> TikTok Shop</a></li> -->
+							<!-- <li><a href="https://www.etsy.com" target="_blank" rel="noopener" class="shop-btn shop-btn--etsy"><span class="icon solid fa-store"></span> Etsy</a></li> -->
 						</ul>
 					</div>
 				</section>
 
-				<!-- SUMMER -->
-				<section id="summer" class="spotlight">
-					<div class="image summer-img"><div class="gradient-art"></div></div>
+				<!-- RED -->
+				<section id="noir" class="spotlight">
+					<div class="image noir-img"><div class="gradient-art"></div></div>
 					<div class="content">
 						<span class="collection-tag">Collection</span>
-						<h2>SUMMER</h2>
-						<p>From first light to last. SUMMER 2026 channels the season&#8217;s
-						warmth into relaxed silhouettes, sun-faded palettes, and fabrics
-						light enough to carry the breeze. Golden-hour tones. Effortless
-						cuts. Wear the warmth you feel when everything is exactly right.</p>
+						<h2>RED</h2>
+						<p>COMING SOON !</p>
 						<ul class="shop-btns">
-							<li><a href="https://www.amazon.com" target="_blank" rel="noopener" class="shop-btn shop-btn--amazon"><span class="icon brands fa-amazon"></span> Amazon</a></li>
-							<li><a href="https://www.tiktok.com/shop" target="_blank" rel="noopener" class="shop-btn shop-btn--tiktok"><span class="icon brands fa-tiktok"></span> TikTok Shop</a></li>
-							<li><a href="https://www.etsy.com" target="_blank" rel="noopener" class="shop-btn shop-btn--etsy"><span class="icon solid fa-store"></span> Etsy</a></li>
+							<!-- TO RE-ENABLE: remove the comment tags around the li elements below -->
+							<!-- <li><a href="https://www.amazon.com" target="_blank" rel="noopener" class="shop-btn shop-btn--amazon"><span class="icon brands fa-amazon"></span> Amazon</a></li> -->
+							<!-- <li><a href="https://www.tiktok.com/shop" target="_blank" rel="noopener" class="shop-btn shop-btn--tiktok"><span class="icon brands fa-tiktok"></span> TikTok Shop</a></li> -->
+							<!-- <li><a href="https://www.etsy.com" target="_blank" rel="noopener" class="shop-btn shop-btn--etsy"><span class="icon solid fa-store"></span> Etsy</a></li> -->
 						</ul>
 					</div>
 				</section>
 
 			</section>
 
+							
+
 			<!-- Brand Values -->
 			<section id="about" class="wrapper style3 special">
 				<div class="inner">
 					<header class="major">
-						<h2>The GLAZE Standard</h2>
-						<p>Premium materials. Limited drops. An obsessive attention to craft.<br />
+						<h2>The GLAZING Standard</h2>
+						<p>Premium materials. Limited drops.<br />
 						If it doesn&#8217;t glow, it doesn&#8217;t go.</p>
 					</header>
 					<ul class="features">
 						<li class="icon fa-gem">
 							<h3>Premium Materials</h3>
-							<p>Every piece crafted from sustainably sourced, premium-grade fabrics.
+							<p>Every piece crafted from premium-grade fabrics.
 							Quality you can feel from the first touch — and still feel ten seasons later.</p>
 						</li>
 						<li class="icon solid fa-fire">
 							<h3>Limited Drops</h3>
-							<p>Each collection releases in carefully limited quantities. No restocks.
-							No dilution. Own something that was made for a reason — and made for few.</p>
+							<p>
+								Each collection releases in carefully limited quantities. 
+								Own something that was made for a reason — and made for few.
+							</p>
 						</li>
 						<li class="icon solid fa-globe">
-							<h3>Global Shipping</h3>
-							<p>From our studio to your wardrobe, wherever in the world that may be.
-							Free shipping on orders over $150. Every continent. Every timezone.</p>
+							<h3>Global Inspiration</h3>
+							<p>Any part of the world can inspire a LUMENGLAZE design.
+							Every continent. Every timezone. Find the fit that tells your story.</p>
 						</li>
 						<li class="icon solid fa-star">
 							<h3>Crafted to Last</h3>
-							<p>Trend-proof construction. Each LUMENGLAZE piece is designed to outlast
+							<p>Trend-proof, each LUMENGLAZE piece is designed to outlast
 							the season it was born from. Timeless cuts. Enduring quality.</p>
 						</li>
 					</ul>
@@ -420,7 +824,7 @@
 						No spam. Just the light.</p>
 					</header>
 					<ul class="actions stacked">
-						<li><a href="mailto:hello@lumenglaze.com" class="button fit primary">Early Access</a></li>
+						<li><a href="lumenglaze@gmail.com" class="button fit primary">Early Access</a></li>
 						<li><a href="#delulu" class="button fit scrolly">Shop Now</a></li>
 					</ul>
 				</div>
@@ -432,7 +836,7 @@
 					<li><a href="https://www.instagram.com" target="_blank" rel="noopener" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 					<li><a href="https://www.tiktok.com" target="_blank" rel="noopener" class="icon brands fa-tiktok"><span class="label">TikTok</span></a></li>
 					<li><a href="https://x.com" target="_blank" rel="noopener" class="icon brands fa-twitter"><span class="label">Twitter / X</span></a></li>
-					<li><a href="mailto:hello@lumenglaze.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					<li><a href="lumenglaze@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 				</ul>
 				<ul class="copyright">
 					<li>&copy; 2026 LUMENGLAZE</li>
@@ -523,7 +927,72 @@
 					if (Math.abs(dx) > 40) goTo(current + (dx > 0 ? 1 : -1));
 				});
 			})();
+			
+			/* ── ART slider ───────────────────────────────────────── */
+			(function () {
+				var slider  = document.querySelector('.art-slider');
+				if (!slider) return;
+
+				var track   = slider.querySelector('.slider-track');
+				var dots    = slider.querySelectorAll('.dot');
+				var total   = slider.querySelectorAll('.slide').length;
+				var current = 0;
+				var startX  = 0;
+				var dragging = false;
+
+				function goTo(n) {
+					current = ((n % total) + total) % total;
+					track.style.transform = 'translateX(-' + (current * 100) + '%)';
+					dots.forEach(function (d, i) {
+						d.classList.toggle('active', i === current);
+					});
+				}
+
+				/* arrow buttons */
+				slider.querySelector('.slider-prev').addEventListener('click', function (e) {
+					e.stopPropagation();
+					goTo(current - 1);
+				});
+				slider.querySelector('.slider-next').addEventListener('click', function (e) {
+					e.stopPropagation();
+					goTo(current + 1);
+				});
+
+				/* dot buttons */
+				dots.forEach(function (d, i) {
+					d.addEventListener('click', function () { goTo(i); });
+				});
+
+				/* touch swipe */
+				track.addEventListener('touchstart', function (e) {
+					startX = e.touches[0].clientX;
+				}, { passive: true });
+
+				track.addEventListener('touchend', function (e) {
+					var dx = startX - e.changedTouches[0].clientX;
+					if (Math.abs(dx) > 40) goTo(current + (dx > 0 ? 1 : -1));
+				});
+
+				/* mouse drag */
+				track.addEventListener('mousedown', function (e) {
+					dragging = true;
+					startX = e.clientX;
+					slider.classList.add('is-dragging');
+				});
+
+				window.addEventListener('mouseup', function (e) {
+					if (!dragging) return;
+					dragging = false;
+					slider.classList.remove('is-dragging');
+					var dx = startX - e.clientX;
+					if (Math.abs(dx) > 40) goTo(current + (dx > 0 ? 1 : -1));
+				});
+			})();
+
+
 		</script>
+		
+		
 
 	</body>
 </html>

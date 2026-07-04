@@ -95,8 +95,17 @@ body.is-mobile.landing .wrapper.style4 {
 /* shrink banner so the first collection peeks at the bottom */
 #banner {
 	background-color: #0b0e20;
-	height: 82vh !important;
+	height: 76vh !important;
 	min-height: 28em !important;
+}
+
+/* push only the eyebrow down from the fixed header */
+#banner .inner {
+	padding-top: 0;
+}
+
+.brand-eyebrow {
+	margin-top: 2.5em;
 }
 
 /* the dark overlay on the banner — keep it subtle */
@@ -344,6 +353,68 @@ body.is-mobile.landing .wrapper.style4 {
 			transparent 28px,
 			rgba(0, 0, 0, 0.07) 28px,
 			rgba(0, 0, 0, 0.07) 56px
+		);
+}
+
+/* CHROME — metallic silver + electric blue */
+.chrome-img .gradient-art {
+	background:
+		linear-gradient(150deg,
+			#0d1f3a 0%,
+			#1a3a5c 25%,
+			#2d6080 50%,
+			#5a9bb8 75%,
+			#c8dce8 100%
+		);
+}
+
+.chrome-img .gradient-art::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(
+			ellipse 55% 40% at 62% 45%,
+			rgba(255, 255, 255, 0.22) 0%,
+			transparent 70%
+		),
+		repeating-linear-gradient(
+			90deg,
+			transparent,
+			transparent 20px,
+			rgba(255, 255, 255, 0.03) 20px,
+			rgba(255, 255, 255, 0.03) 21px
+		);
+}
+
+/* NOIR — deep black + crimson */
+.noir-img .gradient-art {
+	background:
+		linear-gradient(145deg,
+			#060606 0%,
+			#180606 30%,
+			#380a0a 60%,
+			#6e0e0e 82%,
+			#a81212 100%
+		);
+}
+
+.noir-img .gradient-art::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(
+			ellipse 50% 70% at 25% 60%,
+			rgba(168, 18, 18, 0.2) 0%,
+			transparent 65%
+		),
+		repeating-linear-gradient(
+			-52deg,
+			transparent,
+			transparent 18px,
+			rgba(255, 255, 255, 0.015) 18px,
+			rgba(255, 255, 255, 0.015) 19px
 		);
 }
 
